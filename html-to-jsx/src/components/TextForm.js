@@ -6,9 +6,9 @@ import React, { useState } from 'react';
  */
 export default function TextForm() {
 
-    const [text, setText] = useState("<h1> Enter Your HTML Here </h1>");  // state varible for textarea
-    const [jsxText, setJsxText] = useState('');
-    
+    const [text, setText] = useState('<input class="demo" for="demo">');  // state varible for html textarea
+    const [jsxText, setJsxText] = useState('');  // state varible for jsx textarea
+
     // creating a funciton to convert html to jsx
     // creating a method to handle html to jsx converter
     const convertHtmlToJsx = () => {
@@ -21,17 +21,23 @@ export default function TextForm() {
         setText(event.target.value);
     }
 
+    // handling event, when clicked on "copy"
+    const handleCopy = () => {
+        const copiedText = document.getElementById('jsx-code');
+        // copiedText.select();
+        navigator.clipboard.writeText(copiedText.value);
+    }
 
     return (
         <>
             <div style={{ marginTop: '10px' }}>
                 <form>
-                    <div class="row">
-                        <div class="col">
-                            <textarea type="text" class="form-control" value={text} onChange={handleOnChange} rows='22' style={{ width: '98%', marginLeft: '12px' }}></textarea>
+                    <div className="row">
+                        <div className="col">
+                            <textarea type="text" className="form-control" value={text} onChange={handleOnChange} rows='22' style={{ width: '98%', marginLeft: '12px' }}></textarea>
                         </div>
-                        <div class="col">
-                            <textarea type="text" class="form-control" value={jsxText} placeholder="JSX, comes here!!" rows='22' style={{ width: '98%' }}></textarea>
+                        <div className="col">
+                            <textarea type="text" className="form-control" id="jsx-code" onChange={null} value={jsxText} onClick={handleCopy} readOnly={true} placeholder="JSX, comes here!!" rows='22' style={{ width: '98%' }}></textarea>
                         </div>
                     </div>
                 </form>
@@ -47,17 +53,17 @@ export default function TextForm() {
 
 function htmlToJSX(html) {
     // Replace self-closing tags in HTML with equivalent JSX tags
-  const jsx = html.replace(/<(\w+)\s*\/>/g, '<$1 />');
+    const jsx = html.replace(/<(\w+)\s*\/>/g, '<$1 />');
 
-  const jsxInputClosed = endInput(jsx);
-  
-  // Replace class attributes with className in JSX
-  const jsxWithClassName = jsxInputClosed.replace(/class=/g, 'className=');
-  
-  // Replace for attributes with htmlFor in JSX
-  const jsxWithHtmlFor = jsxWithClassName.replace(/for=/g, 'htmlFor=');
+    const jsxInputClosed = endInput(jsx);
 
-  return jsxWithHtmlFor;
+    // Replace class attributes with className in JSX
+    const jsxWithClassName = jsxInputClosed.replace(/class=/g, 'className=');
+
+    // Replace for attributes with htmlFor in JSX
+    const jsxWithHtmlFor = jsxWithClassName.replace(/for=/g, 'htmlFor=');
+
+    return jsxWithHtmlFor;
 }
 
 // creating a method to convert html to jsx
@@ -84,4 +90,3 @@ function endInput(text) {
     text = lst.join('');
     return text;
 }
-
