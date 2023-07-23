@@ -9,7 +9,7 @@ export default function Navbar() {
     return (
         <>
             <nav className="navbar navbar-light bg-light justify-content-between">
-                <a className="navbar-brand">Navbar</a>
+                <a className="navbar-brand"><strong>HTML to JSX</strong></a>
                 <div className="my-2 my-sm-0">
                     <div>
 
