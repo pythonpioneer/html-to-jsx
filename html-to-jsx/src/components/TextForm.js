@@ -4,7 +4,7 @@ import React, { useState } from 'react';
  * This component is used as form.
  * @returns {JSX.Element} - A JSX element used to take input and show output
  */
-export default function TextForm() {
+export default function TextForm(props) {
 
     const [text, setText] = useState('<input class="demo" for="demo">');  // state varible for html textarea
     const [jsxText, setJsxText] = useState('');  // state varible for jsx textarea
@@ -14,6 +14,11 @@ export default function TextForm() {
     const convertHtmlToJsx = () => {
         const jsxCode = htmlToJSX(text);
         setJsxText(jsxCode);
+        
+        // when user passes JSX
+        if(text.length == jsxText.length)
+            props.showAlertMsg("You passed JSX!", 'info');
+        else props.showAlertMsg("Converted to JSX!!", "success");
     }
 
     // this method allows us to write on html-textarea
@@ -79,11 +84,15 @@ function endInput(text) {
             // now, find the greater than symbol in the string
             let ss = lst[tag];
             for (let idx in ss) {
-                if (ss[idx] === '>') {
+                if (ss[idx] === '>' && ss[idx-1] !== '/') {
                     ss = "<input" + ss.slice(0, idx) + "/" + ss.slice(idx);
                     lst[tag] = ss;
                     break;
                 }
+                else if (ss[idx] === '>' && ss[idx-1] === '/'){
+                    return text;
+                }
+                
             }
         }
     }
