@@ -1,15 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
- * This componet will contain features for navigation bar
+ * This componet will contain features for navigation bar.
+ * @param {string} colorMode - This variable is used to set color for day and night mode.
+ * @param {function} changeColorMode - This function is used to change the color mode. 
  * @returns {JSX.Element} - A JSX element shows navigation bar.
  */
 export default function Navbar(props) {
-
-    // demo method (should be deleted before commit)
-    const demoMethod = () => {
-
-    }
 
     // create an object for dark mode
     const darkColor = {
@@ -25,7 +23,7 @@ export default function Navbar(props) {
     return (
         <>
             <nav className={`navbar justify-content-between`} style={props.colorMode === 'dark' ? darkColor : lightColor}>
-                <a className={`navbar-brand text-${props.colorMode === 'light' ? 'dark' : 'light'}`}><strong>HTML to JSX</strong></a>
+                <p className={`navbar-brand text-${props.colorMode === 'light' ? 'dark' : 'light'}`}><strong>HTML to JSX</strong></p>
                 <div className="my-2 my-sm-0">
 
                     {/* light mode (ternary operator used here)*/}
@@ -48,4 +46,15 @@ export default function Navbar(props) {
             </nav>
         </>
     )
+}
+
+// defining the type of property
+Navbar.propTypes = {
+    colorMode: PropTypes.string,
+    changeColorMode: PropTypes.func.isRequired,
+}
+
+// setting the default value for the properties
+Navbar.defaultProps = {
+    colorMode: 'light',
 }

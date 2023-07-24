@@ -19,7 +19,6 @@ function App() {
       setColorMode('light');
       document.body.style.backgroundColor = 'white';
     }
-
   }
 
   // this method is used to dispay the message

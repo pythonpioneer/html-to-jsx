@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * This component is used as form.
- * @returns {JSX.Element} - A JSX element used to take input and show output
+ * @param {string} colorMode - this useState variable is used to set the color for day and night mode.
+ * @param {function} changeColorMode - this function is used to change the color on the screen.
+ * @returns {JSX.Element} - A JSX element used to take input and show output.
  */
 export default function TextForm(props) {
 
@@ -22,14 +25,13 @@ export default function TextForm(props) {
         marginTop: '10px',
     }
 
-    // creating a funciton to convert html to jsx
     // creating a method to handle html to jsx converter
     const convertHtmlToJsx = () => {
         const jsxCode = htmlToJSX(text);
         setJsxText(jsxCode);
-        
+
         // when user passes JSX
-        if(text.length === jsxText.length)
+        if (text.length === jsxText.length)
             props.showAlertMsg("You passed JSX!", 'info');
         else props.showAlertMsg("Converted to JSX!!", "success");
     }
@@ -42,7 +44,7 @@ export default function TextForm(props) {
     // handling event, when clicked on "copy" textarea
     const handleCopy = () => {
         const copiedText = document.getElementById('jsx-code');
-        if(copiedText.value.length > 0) {
+        if (copiedText.value.length > 0) {
             props.showAlertMsg("Copied!!", 'success');
             navigator.clipboard.writeText(copiedText.value);
         }
@@ -50,15 +52,15 @@ export default function TextForm(props) {
     }
 
     return (
-        <div>
-            <div style={props.colorMode==='dark'?darkColor:lightColor}>
+        <div style={{ overflowX: 'hidden' }}>
+            <div style={props.colorMode === 'dark' ? darkColor : lightColor}>
                 <form>
                     <div className="row">
                         <div className="col">
-                            <textarea type="text" className="form-control" value={text} onChange={handleOnChange} rows='22' style={Object.assign({width: '98%', marginLeft: '12px'}, props.colorMode==='dark'?darkColor:lightColor)}></textarea>
+                            <textarea type="text" className="form-control" value={text} onChange={handleOnChange} rows='22' style={Object.assign({ width: '98%', marginLeft: '12px' }, props.colorMode === 'dark' ? darkColor : lightColor)}></textarea>
                         </div>
                         <div className="col">
-                            <textarea type="text" className="form-control" id="jsx-code" onChange={null} value={jsxText} onClick={handleCopy} readOnly={true} placeholder="JSX, comes here!!" rows='22' style={Object.assign({ width: '98%'},  props.colorMode==='dark'?darkColor:lightColor)}></textarea>
+                            <textarea type="text" className="form-control" id="jsx-code" onChange={null} value={jsxText} onClick={handleCopy} readOnly={true} placeholder="JSX, comes here!!" rows='22' style={Object.assign({ width: '98%' }, props.colorMode === 'dark' ? darkColor : lightColor)}></textarea>
                         </div>
                     </div>
                 </form>
@@ -66,7 +68,7 @@ export default function TextForm(props) {
 
             {/* adding button to convert html to jsx */}
             <div className='container'>
-                <button type="button" className="container btn" style={{backgroundColor: '#8FBC8B', color: 'white'}} onClick={convertHtmlToJsx}>Convert HTML to JSX</button>
+                <button type="button" className="container btn" style={{ backgroundColor: '#8FBC8B', color: 'white' }} onClick={convertHtmlToJsx}>Convert HTML to JSX</button>
             </div>
         </div>
     )
@@ -100,18 +102,28 @@ function endInput(text) {
             // now, find the greater than symbol in the string
             let ss = lst[tag];
             for (let idx in ss) {
-                if (ss[idx] === '>' && ss[idx-1] !== '/') {
+                if (ss[idx] === '>' && ss[idx - 1] !== '/') {
                     ss = "<input" + ss.slice(0, idx) + "/" + ss.slice(idx);
                     lst[tag] = ss;
                     break;
                 }
-                else if (ss[idx] === '>' && ss[idx-1] === '/'){
+                else if (ss[idx] === '>' && ss[idx - 1] === '/') {
                     return text;
                 }
-                
             }
         }
     }
     text = lst.join('');
     return text;
+}
+
+// defining the type of properties
+TextForm.propTypes = {
+    colorMode: PropTypes.string,
+    changeColorMode: PropTypes.func.isRequired,
+}
+
+// setting default value for the properties
+TextForm.defaultProps = {
+    colorMode: 'light',
 }
