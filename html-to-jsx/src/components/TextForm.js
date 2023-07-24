@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /**
  * This component is used as form.
  * @param {string} colorMode - this useState variable is used to set the color for day and night mode.
- * @param {function} changeColorMode - this function is used to change the color on the screen.
+ * @param {function} showAlertMsg - this function is used to change the color on the screen.
  * @returns {JSX.Element} - A JSX element used to take input and show output.
  */
 export default function TextForm(props) {
@@ -120,7 +120,7 @@ function endInput(text) {
 // defining the type of properties
 TextForm.propTypes = {
     colorMode: PropTypes.string,
-    changeColorMode: PropTypes.func.isRequired,
+    showAlertMsg: PropTypes.func.isRequired,
 }
 
 // setting default value for the properties
