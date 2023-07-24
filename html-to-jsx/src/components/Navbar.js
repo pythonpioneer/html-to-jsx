@@ -14,7 +14,7 @@ export default function Navbar(props) {
     // create an object for dark mode
     const darkColor = {
         color: 'white',
-        backgroundColor: '#008080',
+        backgroundColor: '#244242',
     }
 
     const lightColor = {

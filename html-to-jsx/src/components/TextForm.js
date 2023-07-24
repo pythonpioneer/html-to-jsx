@@ -39,12 +39,14 @@ export default function TextForm(props) {
         setText(event.target.value);
     }
 
-    // handling event, when clicked on "copy"
+    // handling event, when clicked on "copy" textarea
     const handleCopy = () => {
         const copiedText = document.getElementById('jsx-code');
-        // copiedText.select();
-        navigator.clipboard.writeText(copiedText.value);
-        props.showAlertMsg("Copied!!", 'success');
+        if(copiedText.value.length > 0) {
+            props.showAlertMsg("Copied!!", 'success');
+            navigator.clipboard.writeText(copiedText.value);
+        }
+        else props.showAlertMsg("Nothing to Copy!", 'warning');
     }
 
     return (
@@ -64,7 +66,7 @@ export default function TextForm(props) {
 
             {/* adding button to convert html to jsx */}
             <div className='container'>
-                <button type="button" className="container btn" style={{backgroundColor: 'teal', color: 'white'}} onClick={convertHtmlToJsx}>Convert HTML to JSX</button>
+                <button type="button" className="container btn" style={{backgroundColor: '#8FBC8B', color: 'white'}} onClick={convertHtmlToJsx}>Convert HTML to JSX</button>
             </div>
         </div>
     )
