@@ -9,6 +9,19 @@ export default function TextForm(props) {
     const [text, setText] = useState('<input class="demo" for="demo">');  // state varible for html textarea
     const [jsxText, setJsxText] = useState('');  // state varible for jsx textarea
 
+    // create an object for dark mode and light mode
+    const darkColor = {
+        color: 'white',
+        backgroundColor: '#2F4F4F',
+        marginTop: '10px'
+    }
+
+    const lightColor = {
+        color: 'black',
+        backgroundColor: 'white',
+        marginTop: '10px',
+    }
+
     // creating a funciton to convert html to jsx
     // creating a method to handle html to jsx converter
     const convertHtmlToJsx = () => {
@@ -16,7 +29,7 @@ export default function TextForm(props) {
         setJsxText(jsxCode);
         
         // when user passes JSX
-        if(text.length == jsxText.length)
+        if(text.length === jsxText.length)
             props.showAlertMsg("You passed JSX!", 'info');
         else props.showAlertMsg("Converted to JSX!!", "success");
     }
@@ -31,18 +44,19 @@ export default function TextForm(props) {
         const copiedText = document.getElementById('jsx-code');
         // copiedText.select();
         navigator.clipboard.writeText(copiedText.value);
+        props.showAlertMsg("Copied!!", 'success');
     }
 
     return (
-        <>
-            <div style={{ marginTop: '10px' }}>
+        <div>
+            <div style={props.colorMode==='dark'?darkColor:lightColor}>
                 <form>
                     <div className="row">
                         <div className="col">
-                            <textarea type="text" className="form-control" value={text} onChange={handleOnChange} rows='22' style={{ width: '98%', marginLeft: '12px' }}></textarea>
+                            <textarea type="text" className="form-control" value={text} onChange={handleOnChange} rows='22' style={Object.assign({width: '98%', marginLeft: '12px'}, props.colorMode==='dark'?darkColor:lightColor)}></textarea>
                         </div>
                         <div className="col">
-                            <textarea type="text" className="form-control" id="jsx-code" onChange={null} value={jsxText} onClick={handleCopy} readOnly={true} placeholder="JSX, comes here!!" rows='22' style={{ width: '98%' }}></textarea>
+                            <textarea type="text" className="form-control" id="jsx-code" onChange={null} value={jsxText} onClick={handleCopy} readOnly={true} placeholder="JSX, comes here!!" rows='22' style={Object.assign({ width: '98%'},  props.colorMode==='dark'?darkColor:lightColor)}></textarea>
                         </div>
                     </div>
                 </form>
@@ -50,9 +64,9 @@ export default function TextForm(props) {
 
             {/* adding button to convert html to jsx */}
             <div className='container'>
-                <button type="button" className="container btn btn-primary" onClick={convertHtmlToJsx}>Convert HTML to JSX</button>
+                <button type="button" className="container btn" style={{backgroundColor: 'teal', color: 'white'}} onClick={convertHtmlToJsx}>Convert HTML to JSX</button>
             </div>
-        </>
+        </div>
     )
 }
 
