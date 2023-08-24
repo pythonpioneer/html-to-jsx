@@ -75,18 +75,6 @@ export default function TextForm(props) {
         </div>
     )
 }
-// function htmlToJSX(html) {
-//     // Replace self-closing tags in HTML with equivalent JSX tags
-//     const jsx = html.replace(/<([a-zA-Z]+)\s*\/>/g, '<$1 />');
-
-//     // Replace class attributes with className in JSX
-//     const jsxWithClassName = jsx.replace(/class=/g, 'className=');
-
-//     // Replace for attributes with htmlFor in JSX
-//     const jsxWithHtmlFor = jsxWithClassName.replace(/for=/g, 'htmlFor=');
-
-//     return jsxWithHtmlFor;
-// }
 
 function htmlToJSX(html) {
     // Replace self-closing tags in HTML with equivalent JSX tags
@@ -102,36 +90,6 @@ function htmlToJSX(html) {
   const jsxWithHtmlFor = jsxWithClassName.replace(/for=/g, 'htmlFor=');  
   return jsxWithHtmlFor; 
 }  
-
-
-
-// creating a method to convert html to jsx
-function endInput(text) {
-
-    // splitting string into list and find the input tag position
-    let lst = text.split('<input');
-
-    // now find '<' tag in every string, if not, it means there was '<input'
-    for (let tag in lst) {
-        if (lst[tag][0] !== '<') {
-
-            // now, find the greater than symbol in the string
-            let ss = lst[tag];
-            for (let idx in ss) {
-                if (ss[idx] === '>' && ss[idx - 1] !== '/') {
-                    ss = "<input" + ss.slice(0, idx) + "/" + ss.slice(idx);
-                    lst[tag] = ss;
-                    break;
-                }
-                else if (ss[idx] === '>' && ss[idx - 1] === '/') {
-                    return text;
-                }
-            }
-        }
-    }
-    text = lst.join('');
-    return text;
-}
 
 // defining the type of properties
 TextForm.propTypes = {
