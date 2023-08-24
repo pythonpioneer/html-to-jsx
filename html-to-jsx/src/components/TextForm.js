@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';  
+const ReactDOMServer = require('react-dom/server');
+const HtmlToReactParser = require('html-to-react').Parser;
 
 /**
  * This component is used as form.
@@ -73,21 +75,35 @@ export default function TextForm(props) {
         </div>
     )
 }
+// function htmlToJSX(html) {
+//     // Replace self-closing tags in HTML with equivalent JSX tags
+//     const jsx = html.replace(/<([a-zA-Z]+)\s*\/>/g, '<$1 />');
+
+//     // Replace class attributes with className in JSX
+//     const jsxWithClassName = jsx.replace(/class=/g, 'className=');
+
+//     // Replace for attributes with htmlFor in JSX
+//     const jsxWithHtmlFor = jsxWithClassName.replace(/for=/g, 'htmlFor=');
+
+//     return jsxWithHtmlFor;
+// }
 
 function htmlToJSX(html) {
     // Replace self-closing tags in HTML with equivalent JSX tags
-    const jsx = html.replace(/<(\w+)\s*\/>/g, '<$1 />');
+  
+    const htmlToReactParser = new HtmlToReactParser();
+    const reactElement = htmlToReactParser.parse(html);
+    const reactHtml = ReactDOMServer.renderToStaticMarkup(reactElement);
+     
+      // Replace class attributes with className in JSX
+     const jsxWithClassName = reactHtml.replace(/class=/g, 'className=');
 
-    const jsxInputClosed = endInput(jsx);
+   // Replace for attributes with htmlFor in JSX
+  const jsxWithHtmlFor = jsxWithClassName.replace(/for=/g, 'htmlFor=');  
+  return jsxWithHtmlFor; 
+}  
 
-    // Replace class attributes with className in JSX
-    const jsxWithClassName = jsxInputClosed.replace(/class=/g, 'className=');
 
-    // Replace for attributes with htmlFor in JSX
-    const jsxWithHtmlFor = jsxWithClassName.replace(/for=/g, 'htmlFor=');
-
-    return jsxWithHtmlFor;
-}
 
 // creating a method to convert html to jsx
 function endInput(text) {
