@@ -94,8 +94,14 @@ function htmlToJSX(html) {
     const htmlToReactParser = new HtmlToReactParser();
     const reactElement = htmlToReactParser.parse(html);
     const reactHtml = ReactDOMServer.renderToStaticMarkup(reactElement);
-    return reactHtml;
-}
+     
+      // Replace class attributes with className in JSX
+     const jsxWithClassName = reactHtml.replace(/class=/g, 'className=');
+
+   // Replace for attributes with htmlFor in JSX
+  const jsxWithHtmlFor = jsxWithClassName.replace(/for=/g, 'htmlFor=');  
+  return jsxWithHtmlFor; 
+}  
 
 
 
