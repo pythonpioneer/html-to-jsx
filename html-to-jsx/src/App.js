@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
 import { useState } from 'react';
+import {Grid} from '@mui/material';
 
 function App() {
 
@@ -29,13 +30,15 @@ function App() {
     });
     setTimeout(() => {
       setAlertMsg(null);
-    }, 2000);
+    }, 5000);
   }
   
   return (
     <>
+      <Grid >
       <Navbar colorMode={colorMode} changeColorMode={changeColorMode}/>
-      <Alert alertMsg={alertMsg}/>
+      <Alert alertMsg={alertMsg} />
+      </Grid>
       <TextForm showAlertMsg={showAlertMsg} colorMode={colorMode}/>
     </>
   );
