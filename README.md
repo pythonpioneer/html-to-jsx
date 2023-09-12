@@ -54,5 +54,5 @@ The app is built on top of [Create React App](https://github.com/facebook/create
 
 ## To make contribution
 
-  To contribute, go to the contributing.md file. I will appreciate your efforts.
+  To contribute, go to the [contributing.md file](https://github.com/pythonpioneer/html-to-jsx/blob/jsx-converter/html-to-jsx/contributing.md). I will appreciate your efforts.
 
