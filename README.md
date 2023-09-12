@@ -1,6 +1,6 @@
-# HTML to JSX (https://pythonpioneer.github.io/html-to-jsx/)
+# HTML to JSX
 
-The purpose of this app to convert HTML to JSX. (This is mostly used in React.js components)
+The purpose of this app is to convert HTML to JSX. (The JSX is mainly used in React.js)
 
 ## Getting Started
 
