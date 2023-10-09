@@ -25,7 +25,7 @@ We would like to express our gratitude to the following individuals who have con
 | <img src="https://avatars.githubusercontent.com/u/87857226?v=4" width="200" height="200"> |
 |---|
 | [Raj](https://github.com/Axxi3) | 
-| He contributed to resolve the [issue(#1)](https://github.com/pythonpioneer/html-to-jsx/issues/1)   | 
+| He contributed to resolve the issue <br> [issue(#1)](https://github.com/pythonpioneer/html-to-jsx/issues/1)   | 
 
 *If you've contributed to this project and your name is missing from this list, please [let us know](mailto:kumarhritiksinha@gmail.com), and we'll be happy to add you!*
 
