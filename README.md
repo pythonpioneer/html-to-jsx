@@ -2,6 +2,10 @@
 
 The purpose of this app is to convert HTML to JSX. (The JSX is mainly used in React.js)
 
+## License
+
+Before you start contributing to this project, please review the [LICENSE](https://github.com/pythonpioneer/html-to-jsx/blob/jsx-converter/LICENSE) file to understand the licensing terms. By contributing to this project, you agree to abide by its terms.
+
 ## Getting Started
 
 - Clone the repo
