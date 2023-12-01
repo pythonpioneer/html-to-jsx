@@ -1,5 +1,4 @@
 import React from 'react';
-import './waveNavbar.css';
 
 
 // to display the navigation bar
