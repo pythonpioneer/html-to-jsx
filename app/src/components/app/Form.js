@@ -7,12 +7,26 @@ const HtmlToReactParser = require('html-to-react').Parser;
 export default function Form() {
 
     // to store the form text
-    const htmlTextRef = useRef('');
-    const [jsxText, setJsxText] = useState('');
+    const htmlTextRef = useRef('');  // for HTML
+    const [jsxText, setJsxText] = useState('Your JSX will be here');  // for JSX
+
+    // creating a method to handle html to jsx converter
+    const convertHtmlToJsx = (text) => {
+        const jsxCode = htmlToJSX(text);
+        setJsxText(jsxCode);
+    }
     
     // now fetch the form data
     const fetchFormData = () => {
-        console.log(htmlTextRef.current.value);
+        convertHtmlToJsx(htmlTextRef.current.value);
+    }
+
+    // handling event, when clicked on "copy" textarea
+    const handleCopy = () => {
+        const copiedText = document.getElementById('jsx-code');
+        if (copiedText.value.length > 0) {
+            navigator.clipboard.writeText(copiedText.value);
+        }
     }
 
     return (
@@ -29,7 +43,7 @@ export default function Form() {
 
                 <div>
                     <label style={{ fontSize: '16px', fontWeight: 'bold' }}>Your JSX</label>
-                    <textarea style={{ width: '100%', height: '30vh', backgroundColor: 'transparent' }} defaultValue="Your JSX will be here"></textarea>
+                    <textarea id="jsx-code" style={{ width: '100%', height: '30vh', backgroundColor: 'transparent' }} readOnly={true} value={jsxText} onClick={handleCopy}></textarea>
                 </div>
             </div>
         </>
