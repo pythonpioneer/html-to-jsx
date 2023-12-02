@@ -33,8 +33,8 @@ export default function Form() {
         <>
             <div className='container mt-2'>
                 <div>
-                    <label style={{ fontSize: '16px', fontWeight: 'bold' }}>Your HTML</label>
-                    <textarea ref={htmlTextRef} style={{ width: '100%', height: '30vh', backgroundColor: 'transparent', resize: 'none', outline: 'none' }} defaultValue='<input class="demo" for="demo">'></textarea>
+                    <label htmlFor="inputHtml" style={{ fontSize: '16px', fontWeight: 'bold' }}>Your HTML</label>
+                    <textarea id="inputHtml" ref={htmlTextRef} style={{ width: '100%', height: '30vh', backgroundColor: 'transparent', resize: 'none', outline: 'none' }} defaultValue='<input class="demo" for="demo">'></textarea>
                 </div>
 
                 <div className='' style={{ justifyContent: 'center', display: 'flex' }}>
@@ -42,7 +42,7 @@ export default function Form() {
                 </div>
 
                 <div>
-                    <label style={{ fontSize: '16px', fontWeight: 'bold' }}>Your JSX</label>
+                    <label htmlFor="jsx-code" style={{ fontSize: '16px', fontWeight: 'bold' }}>Your JSX</label>
                     <textarea id="jsx-code" style={{ width: '100%', height: '30vh', backgroundColor: 'transparent', resize: 'none', outline: 'none' }} readOnly={true} value={jsxText} onClick={handleCopy}></textarea>
                 </div>
             </div>
@@ -52,6 +52,9 @@ export default function Form() {
 
 // to convert the html text into jsx
 function htmlToJSX(html) {
+
+    // convert html comments into jsx comments
+    html = convertComment(html);
 
     // Replace self-closing tags in HTML with equivalent JSX tags
     const htmlToReactParser = new HtmlToReactParser();
@@ -65,3 +68,42 @@ function htmlToJSX(html) {
     const jsxWithHtmlFor = jsxWithClassName.replace(/for=/g, 'htmlFor=');  
     return jsxWithHtmlFor; 
 }  
+
+// to convert the html comments into jsx comment for react
+function convertComment(html) {
+    // let html = `<link rel="icon" href="%PUBLIC_URL%/app.png" />
+    // <!-- <meta name="viewport" content="width=device-width, initial-scale=1" />
+    // <meta name="theme-color" content="#000000" />
+    // <!-- <meta name="description" content="Design Your Day Like Pro" /> -->
+    // <link rel="apple-touch-icon" href="%PUBLIC_URL%/app.png" />  -->`;
+
+    // find the comment syntax <!-- 
+    const commentStartSymbol = html.match(/<!--/g);
+    const commentEndSymbol = html.match(/-->/g);
+
+    // if there is no comments
+    if (!commentStartSymbol) return html;
+
+    // if both lengths are equal then comment sequentially
+    if (commentStartSymbol?.length === commentEndSymbol?.length) {
+        
+        // replace the symbols with thier respective comment symbols
+        let jsxComment = html.replaceAll('<!--', '{/*');
+        jsxComment = jsxComment.replaceAll('-->', '*/}');
+
+        // console.log(jsxComment)
+        return jsxComment;
+    }
+    else {  // if both lengths are not equal then comment from the first to the last
+
+        // find the first index of the comment start symbol
+        let firstIndex = html.indexOf('<!--');
+        let lastIndex = html.lastIndexOf('-->'); 
+
+        // now, insert the jsx comment symbol at the firstIndex and lastIndex
+        let jsxComment = html.slice(0, firstIndex) + '{/*' + html.slice(firstIndex+4, lastIndex) + '*/}' + html.slice(lastIndex+3);
+        return jsxComment;
+    }
+
+}
+// convertComment();
