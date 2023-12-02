@@ -12,7 +12,7 @@ export default function Form() {
             </div>
             
             <div className='' style={{ justifyContent: 'center', display: 'flex' }}>
-                <button className='mt-4 mb-4' style={{ backgroundColor: '#e68f71', width: '20%'}}>Convert</button>
+                <button className='mt-4 mb-4' style={{ backgroundColor: '#e68f71', width: '25%'}}>CONVERT</button>
             </div>
 
             <div>
