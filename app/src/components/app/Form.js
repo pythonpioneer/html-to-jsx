@@ -34,7 +34,7 @@ export default function Form() {
             <div className='container mt-2'>
                 <div>
                     <label style={{ fontSize: '16px', fontWeight: 'bold' }}>Your HTML</label>
-                    <textarea ref={htmlTextRef} style={{ width: '100%', height: '30vh', backgroundColor: 'transparent' }} defaultValue='<input class="demo" for="demo">'></textarea>
+                    <textarea ref={htmlTextRef} style={{ width: '100%', height: '30vh', backgroundColor: 'transparent', resize: 'none', outline: 'none' }} defaultValue='<input class="demo" for="demo">'></textarea>
                 </div>
 
                 <div className='' style={{ justifyContent: 'center', display: 'flex' }}>
@@ -43,7 +43,7 @@ export default function Form() {
 
                 <div>
                     <label style={{ fontSize: '16px', fontWeight: 'bold' }}>Your JSX</label>
-                    <textarea id="jsx-code" style={{ width: '100%', height: '30vh', backgroundColor: 'transparent' }} readOnly={true} value={jsxText} onClick={handleCopy}></textarea>
+                    <textarea id="jsx-code" style={{ width: '100%', height: '30vh', backgroundColor: 'transparent', resize: 'none', outline: 'none' }} readOnly={true} value={jsxText} onClick={handleCopy}></textarea>
                 </div>
             </div>
         </>
