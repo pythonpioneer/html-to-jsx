@@ -37,7 +37,7 @@ export default function Form() {
                 </div>
 
                 <div className='' style={{ justifyContent: 'center', display: 'flex' }}>
-                    <button onClick={fetchFormData} className='mt-4 mb-4' style={{ backgroundColor: '#e68f71', width: '25%' }}>CONVERT</button>
+                    <button onClick={fetchFormData} className='mt-4 mb-4' style={{ backgroundColor: '#343434', width: '25%', color: 'whitesmoke' }}>CONVERT</button>
                 </div>
 
                 <div>
