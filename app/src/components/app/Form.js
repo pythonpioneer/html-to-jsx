@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { htmlToJSX } from '../../utility';
+import { toast } from 'react-toastify';
 
 
 // to display the form
@@ -13,6 +14,9 @@ export default function Form() {
     const convertHtmlToJsx = (text) => {
         const jsxCode = htmlToJSX(text);
         setJsxText(jsxCode);
+
+        // to notify the user
+        toast.success('Converted Successfully!!');
     }
 
     // now fetch the form data
@@ -25,6 +29,7 @@ export default function Form() {
         const copiedText = document.getElementById('jsx-code');
         if (copiedText.value.length > 0) {
             navigator.clipboard.writeText(copiedText.value);
+            toast.info('Copied!')
         }
     }
 
@@ -37,7 +42,7 @@ export default function Form() {
                 </div>
 
                 <div className='' style={{ justifyContent: 'center', display: 'flex' }}>
-                    <button onClick={fetchFormData} className='mt-4 mb-4' style={{ backgroundColor: '#343434', width: '25%', color: 'whitesmoke' }}>CONVERT</button>
+                    <button onClick={fetchFormData} className='mt-4 mb-2' style={{ backgroundColor: '#343434', width: '25%', color: 'whitesmoke', outline: 'none' }}>CONVERT</button>
                 </div>
 
                 <div>
