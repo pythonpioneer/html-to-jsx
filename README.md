@@ -15,7 +15,7 @@ Before you start contributing to this project, please review the [LICENSE](https
 - Go to your project folder and install dependencies (make sure you have npm and node)
 
   ```
-  cd html-to-jsx/html-to-jsx
+  cd html-to-jsx/app
   ```
   ```
   npm install
@@ -46,15 +46,15 @@ The app is built on top of [Create React App](https://github.com/facebook/create
 
 - Alert
 
-    The alert is to notify the user about the performed action.
+    to display alerts, we used react-toastify.
   
 - Navbar
 
-    The Navbar is to change the theme of the app.
+    The Navbar is to display the app name. (no need to change the app theme)
   
 - TextForm
 
-    The actual logic to convert the HTML to JSX is written in "TextForm.js".
+    To display the form to enter HTML and to get JSX as output. The actual logic to convert the HTML to JSX is written in "app/src/utitlity".
 
 ## To Contribute
 
