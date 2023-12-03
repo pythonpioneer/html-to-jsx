@@ -27,9 +27,12 @@ export default function Form() {
     // handling event, when clicked on "copy" textarea
     const handleCopy = () => {
         const copiedText = document.getElementById('jsx-code');
-        if (copiedText.value.length > 0) {
+        if (copiedText.value.length > 0 && copiedText.value !== "Your JSX will be here") {  // if something converted
             navigator.clipboard.writeText(copiedText.value);
-            toast.info('Copied!')
+            toast.success('Copied!');
+        }
+        else {  // if there is nothing to copy
+            toast.info('No content has been copied!');
         }
     }
 
