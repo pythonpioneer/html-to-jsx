@@ -22,10 +22,10 @@ We would like to express our gratitude to the following individuals who have con
 
 ## Contributors
 
-| <img src="https://avatars.githubusercontent.com/u/87857226?v=4" width="200" height="200"> |
-|---|
-| [Raj](https://github.com/Axxi3) | 
-| He contributed to resolve the issue <br> [issue(#1)](https://github.com/pythonpioneer/html-to-jsx/issues/1)   | 
+| <img src="https://avatars.githubusercontent.com/u/87857226?v=4" width="200" height="200"> | <img src="https://avatars.githubusercontent.com/u/110678882?v=4" width="200" height="200"> |
+|---|---|
+| [Raj](https://github.com/Axxi3) | [garima-virmani](https://github.com/garima-virmani) |
+| He contributed to resolve the issue <br> [issue(#1)](https://github.com/pythonpioneer/html-to-jsx/issues/1) | She played a significant role in <br>redesigning the entire application. |
 
 *If you've contributed to this project and your name is missing from this list, please [let us know](mailto:kumarhritiksinha@gmail.com), and we'll be happy to add you!*
 
